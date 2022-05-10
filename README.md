@@ -102,10 +102,54 @@ $ flutter pub publish
 プラグインに対するスコアが視覚的にわかりやすいので、
 ドキュメントを充実させたくなるモチベーションがあがるので楽しいですね！
 
+Flutterで開発をしていたとき、音量を取得したり操作することがしたくなりました。
+しかし、pub.devを見てみてもやりたいことが実現できそうなパッケージが見つからず。。。
+「ないならば自分でつくろう」となったのですが初めてのことだったので色々と調べました。
+今回は自作プラグインパッケージを作るときのDay0で必要なことをまとめておこうと思います。
+
+Flutterには2種類のパッケージがある
+そもそもですが、Flutterにはパッケージと呼ばれるものが2つあります。
+1つはDartパッケージ。もう1つはプラグインパッケージです。
+
+DartパッケージはFlutterフレームワークのみを使ったパッケージです。Dartで書かれています。
+DartパッケージにはFlutter固有の機能が含まれています。ルーティングなどです。
+
+プラグインパッケージはプラットフォーム固有の実装とDartの実装を合わせたパッケージです。
+例えばiOS固有の通知などを実装するといったものが挙げられます。
+
+プラグインパッケージの作り方
+公式ドキュメントに従ってプラグインパッケージを作っていきます。
+
+flutter create --org com.example --template=plugin --platforms=android,ios -a kotlin saample
+
+このコマンドでプラグインパッケージ用のプロジェクトを作成できます。
+オプション説明
+--tenmplate このオプションを浸けることでFlutterが公式に展開しているプラグインプロジェクトの雛形を使ってプロジェクトを組み上げます
+
+--platform このオプションではプラグインパッケージが対応するプラットフォームを指定します。
+AndriodとiOSに対応させたいときには --platform=andriod,iosとカンマ区切りで指定します。
+-i swiftもしくは-a kotlinでプラグインパッケージで使う言語を指定します。何もつけない場合iOSではObjective−C、AndroidではJavaを使うことになります。
+
+オプションを指定してコマンドを走らせると雛形プロジェクトが立ち上がります。
+デフォルト状態のものを見ながらどんなことが書かれているのかを見ていきましょう。
+
+
+
 
 
 ## 参考
 - [Flutter](https://github.com/flutter/flutter)
 - [pub.dev](https://pub.dev/)
 - [Flutterプラグイン開発ことはじめ](https://qiita.com/napo/items/caee087c6b8dbe510e87)
+- [Flutterの自作パッケージを作るときに見たものをまとめた](https://zenn.dev/rem/articles/644d0f4b480eb7)
+
+## リポジトリ
+
+プラグイン
+https://github.com/maropook/flutter_sample_plugin
+
+プラグインを呼び出すサンプル
+
+https://github.com/maropook/flutter_call_sample_plugin
+
 
